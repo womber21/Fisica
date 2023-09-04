@@ -1,15 +1,18 @@
-import scipy.constants as cons
-import numpy    as np
-import matplotlib.pyplot as plt
-lmin, lmax = 1,100
-nmin, nmax = 1,100
-n= np.linspace(nmin,nmax,100)
-x = np.linspace(lmin, lmax, 100)
-a=np.multiply(n,x)
-e=cons.h*a
-fig = plt.figure()
-ax = fig.add_subplot(111, facecolor='k')
-ax.plot(e,  c='w', lw=2)
-ax.set_xlim(250,1000)
-ax.set_ylim(-2,2)
-plt.show()
+import numpy as np
+import pylab as pl
+
+# Efecto Fotoelectrico
+Vf=[[0.1432],[0.168],[0.775]]
+v=[[5.19*10**14],[5.5*10**14],[5.88*10**14]]
+regr = linear_model.LinearRegression()
+regr.fit(Vf,v)
+print('Coefficients: \n', regr.coef_, regr.intercept_)
+pl.figure(1)
+pl.plot(Vf, regr.predict(Vf), color='black', linewidth=3)
+pl.scatter(Vf, v, s=40, marker='o', color='r')
+pl.xlabel('Frecuencia (Hz)')
+pl.ylabel('Voltaje Frenado (V)')
+pl.tittle('Caracteristica filtro Amarillo',fontsize = 17, color = 'k', verticalalignment = 'baseline', horizontalalignment = 'center')
+pl.xlim(.0, 1.0)
+pl.ylim(.0, 1.5)
+pl.show()
