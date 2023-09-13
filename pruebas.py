@@ -1,18 +1,21 @@
 import numpy as np
-import pylab as pl
+import matplotlib.pyplot as plt
 
-# Efecto Fotoelectrico
-Vf=[[0.1432],[0.168],[0.775]]
-v=[[5.19*10**14],[5.5*10**14],[5.88*10**14]]
-regr = linear_model.LinearRegression()
-regr.fit(Vf,v)
-print('Coefficients: \n', regr.coef_, regr.intercept_)
-pl.figure(1)
-pl.plot(Vf, regr.predict(Vf), color='black', linewidth=3)
-pl.scatter(Vf, v, s=40, marker='o', color='r')
-pl.xlabel('Frecuencia (Hz)')
-pl.ylabel('Voltaje Frenado (V)')
-pl.tittle('Caracteristica filtro Amarillo',fontsize = 17, color = 'k', verticalalignment = 'baseline', horizontalalignment = 'center')
-pl.xlim(.0, 1.0)
-pl.ylim(.0, 1.5)
-pl.show()
+# Generate a range of frequencies
+start_frequency = 1e6
+end_frequency = 1e10
+step_frequency = 1e9  # Adjust this step size as needed
+frequencies = np.arange(start_frequency, end_frequency, step_frequency)
+
+# Corresponding electric permittivity values (example)
+permittivity_values = np.array([4.5, 4.2, 4.0, 3.8, 3.5, 3.2, 2.9, 2.6, 2.3, 2.0])
+
+# Create the plot
+plt.figure(figsize=(8, 6))
+plt.plot(frequencies, permittivity_values, marker='o', linestyle='-')
+plt.xlabel('Frequency (Hz)')
+plt.ylabel('Electric Permittivity (ε)')
+plt.title('Electric Permittivity vs. Frequency')
+plt.grid(True)
+plt.show()
+
